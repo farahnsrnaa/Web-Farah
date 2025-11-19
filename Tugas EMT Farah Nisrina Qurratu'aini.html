@@ -1,0 +1,901 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+<title>Pendahuluan dan Pengenalan Cara Kerja EMT</title>
+<style type="text/css">
+body { width : 700px; font-family: arial, sans-serif; font-size: 10pt; margin: 20px; margin-left: auto; margin-right: auto; }
+pre { font-family : "Courier New", monospace; background: #EEE; padding: 10px; margin-left: 15%; }
+pre.output { color: #000; background:none; margin-left: 5%; }
+pre.udf { color : #006; margin-left: 0; }
+pre.prompt { color : #700; margin-left: 0; }
+pre.comment { color : #040; background: none; margin-left: 7%; }
+p.comment { color : #040; margin-left: 5%; margin-right: 5%; }
+p.indentedcomment { color : #040; margin-left: 10%; }
+h1.title { font-family : arial, sans-serif; text-align : right; font-size : 24pt; padding-bottom: 5pt; }
+h1.comment, h1.comment a { font-family : arial, sans-serif; text-align : right; font-size : 16pt; color : #000; }
+h1.comment, h2.comment a { font-family : arial, sans-serif; text-align : right; font-size : 12pt; color : #000; }
+h1.title, h1.comment, h2.comment { border-bottom: 2px solid #e9b06e; }
+ul.comment { font-family : arial, sans-serif; font-size : 10pt; color : #040; margin-left: 10%; margin-right: 10%; padding-left:0; }
+img.euler { }
+p.image { text-align:center; margin-left:50px; }
+a:link { color:#448; font-weight:bolder; text-decoration:none; }
+a:visited { color:#446; font-weight:bolder; text-decoration:none; }
+p.mathjax { color:#040; font-size: 9pt; text-align: center; padding-left:50px; }
+</style>
+<script type="text/javascript"
+src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+</head>
+
+<body>
+<h1 class="title">Pendahuluan dan Pengenalan Cara Kerja EMT</h1>
+<p class="comment">Selamat datang! Ini adalah pengantar pertama ke Euler Math Toolbox (disingkat EMT
+atau Euler). EMT adalah sistem terintegrasi yang merupakan perpaduan kernel
+numerik Euler dan program komputer aljabar Maxima.
+</p>
+<ul class="comment">
+<li>
+Bagian numerik, GUI, dan komunikasi dengan Maxima telah dikembangkan oleh R.
+Grothmann, seorang profesor matematika di Universitas Eichstätt, Jerman. Banyak
+algoritma numerik dan pustaka software open source yang digunakan di dalamnya.
+</li>
+</ul>
+<ul class="comment">
+<li>
+Maxima adalah program open source yang matang dan sangat kaya untuk perhitungan
+simbolik dan aritmatika tak terbatas. Software ini dikelola oleh sekelompok
+pengembang di internet.
+</li>
+</ul>
+<ul class="comment">
+<li>
+Beberapa program lain (LaTeX, Povray, Tiny C Compiler, Python) dapat digunakan
+di Euler untuk memungkinkan perhitungan yang lebih cepat maupun tampilan atau
+grafik yang lebih baik.
+</li>
+</ul>
+<p class="comment">Yang sedang Anda baca (jika dibaca di EMT) ini adalah berkas notebook di EMT.
+Notebook aslinya bawaan EMT (dalam bahasa Inggris) dapat dibuka melalui menu
+File, kemudian pilih "Open Tutorias and Example", lalu pilih file "00 First
+Steps.en". Perhatikan, file notebook EMT memiliki ekstensi ".en". Melalui
+notebook ini Anda akan belajar menggunakan software Euler untuk menyelesaikan
+berbagai masalah matematika.
+</p>
+<p class="comment">Panduan ini ditulis dengan Euler dalam bentuk notebook Euler, yang berisi teks
+(deskriptif), baris-baris perintah, tampilan hasil perintah (numerik, ekspresi
+matematika, atau gambar/plot), dan gambar yang disisipkan dari file gambar.
+</p>
+<p class="comment">Untuk menambah jendela EMT, Anda dapat menekan [F11]. EMT akan menampilkan
+jendela grafik di layar desktop Anda. Tekan [F11] lagi untuk kembali ke tata
+letak favorit Anda. Tata letak disimpan untuk sesi berikutnya.
+</p>
+<p class="comment">Anda juga dapat menggunakan [Ctrl]+[G] untuk menyembunyikan jendela grafik.
+Selanjutnya Anda dapat beralih antara grafik dan teks dengan tombol [TAB].
+</p>
+<p class="comment">Seperti yang Anda baca, notebook ini berisi tulisan (teks) berwarna hijau, yang
+dapat Anda edit dengan mengklik kanan teks atau tekan menu Edit -&gt; Edit Comment
+atau tekan [F5], dan juga baris perintah EMT yang ditandai dengan "&gt;" dan
+berwarna merah. Anda dapat menyisipkan baris perintah baru dengan cara menekan
+tiga tombol bersamaan: [Shift]+[Ctrl]+[Enter].
+</p>
+<h2 class="comment">Komentar (Teks Uraian)</h2>
+<p class="comment">Komentar atau teks penjelasan dapat berisi beberapa "markup" dengan sintaks
+sebagai berikut.
+</p>
+<pre class="comment">   - * Judul
+   - ** Sub-Judul
+   - latex: F (x) = \int_a^x f (t) \, dt
+   - mathjax: \frac{x^2-1}{x-1} = x + 1
+   - maxima: 'integrate(x^3,x) = integrate(x^3,x) + C
+   - http://www.euler-math-toolbox.de
+   - See: http://www.google.de | Google
+   - image: hati.png
+   - ---
+</pre><p class="comment">Hasil sintaks-sintaks di atas (tanpa diawali tanda strip) adalah sebagai berikut.
+</p>
+<h1 class="comment"><a name="Judul">Judul</a></h1>
+<h2 class="comment">Sub-Judul</h2>
+<p class="mathjax">
+$$\frac{x^2-1}{x-1} = x + 1$$</p>
+<p class="comment"><br />maxima: 'integrate(x^3,x) = integrate(x^3,x) + C
+<br />  <a href="http://www.euler-math-toolbox.de">http://www.euler-math-toolbox.de</a>
+<br />  <a href="http://www.google.de">Google</a>
+<br />image: hati.png
+</p>
+<h1 class="comment"></h1>
+<p class="comment">Gambar diambil dari folder images di tempat file notebook berada dan tidak dapat
+dibaca dari Web. Untuk "See:", tautan (URL)web lokal dapat digunakan.
+</p>
+<p class="comment">Paragraf terdiri atas satu baris panjang di editor. Pergantian baris akan memulai
+baris baru. Paragraf harus dipisahkan dengan baris kosong.
+</p>
+<pre class="prompt">&gt;// baris perintah diawali dengan &gt;, komentar (keterangan) diawali dengan //
+</pre>
+<h1 class="comment"><a name="Baris_Perintah">Baris Perintah</a></h1>
+<p class="comment">Mari kita tunjukkan cara menggunakan EMT sebagai kalkulator yang sangat
+canggih.
+</p>
+<p class="comment">EMT berorientasi pada baris perintah. Anda dapat menuliskan satu atau lebih
+perintah dalam satu baris perintah. Setiap perintah harus diakhiri dengan koma
+atau titik koma.
+</p>
+<ul class="comment">
+<li>
+Titik koma menyembunyikan output (hasil) dari perintah.
+</li>
+<li>
+Sebuah koma mencetak hasilnya.
+</li>
+<li>
+Setelah perintah terakhir, koma diasumsikan secara otomatis (boleh tidak
+ditulis).
+</li>
+</ul>
+<p class="comment">Dalam contoh berikut, kita mendefinisikan variabel r yang diberi nilai 1,25.
+Output dari definisi ini adalah nilai variabel. Tetapi karena tanda titik koma,
+nilai ini tidak ditampilkan. Pada kedua perintah di belakangnya, hasil kedua
+perhitungan tersebut ditampilkan.
+</p>
+<pre class="prompt">&gt;r=1.25; pi*r^2, 2*pi*r
+</pre>
+<pre class="output">4.90873852123
+7.85398163397
+</pre>
+<h2 class="comment">Latihan untuk Anda</h2>
+<ul class="comment">
+<li>
+Sisipkan beberapa baris perintah baru
+</li>
+<li>
+Tulis perintah-perintah baru untuk melakukan suatu perhitungan yang
+Anda inginkan, boleh menggunakan variabel, boleh tanpa variabel.
+---
+Beberapa catatan yang harus Anda perhatikan tentang penulisan sintaks
+perintah EMT.
+</li>
+</ul>
+<ul class="comment">
+<li>
+Pastikan untuk menggunakan titik desimal, bukan koma desimal untuk
+bilangan!
+</li>
+<li>
+Gunakan * untuk perkalian dan ^ untuk eksponen (pangkat).
+</li>
+<li>
+Seperti biasa, * dan / bersifat lebih kuat daripada + atau -.
+</li>
+<li>
+^ mengikat lebih kuat dari *, sehingga pi * r ^ 2 merupakan rumus
+luas lingkaran.
+</li>
+<li>
+Jika perlu, Anda harus menambahkan tanda kurung, seperti pada 2 ^ (2
+^ 3).
+</li>
+</ul>
+<p class="comment">Perintah r = 1.25 adalah menyimpan nilai ke variabel di EMT. Anda juga
+dapat menulis r: = 1.25 jika mau. Anda dapat menggunakan spasi sesuka
+Anda.
+</p>
+<p class="comment">Anda juga dapat mengakhiri baris perintah dengan komentar yang diawali
+dengan dua garis miring (//).
+</p>
+<pre class="prompt">&gt;r := 1.25 // Komentar: Menggunakan  := sebagai ganti =
+</pre>
+<pre class="output">1.25
+</pre>
+<h2 class="comment">Jawaban dari Latihan untuk Anda</h2>
+<p class="comment"><br />Berikut saya tambahkan beberapa baris perintah terkait perhitungan
+dengan menggunakan variabel
+</p>
+<pre class="prompt">&gt;m=7; n=5; l=m*n
+</pre>
+<pre class="output">35
+</pre>
+<pre class="prompt">&gt;a=5; b=a*10, c=b*a-a
+</pre>
+<pre class="output">50
+245
+</pre>
+<p class="comment">Selanjutnya adalah baris perintah baru terkait perhitungan tetapi
+tanpa menggunakan variabel
+</p>
+<pre class="prompt">&gt;256+1357*2
+</pre>
+<pre class="output">2970
+</pre>
+<pre class="prompt">&gt;(2^5*(7+10-5)+16)/2
+</pre>
+<pre class="output">200
+</pre>
+<h1 class="comment"></h1>
+<p class="comment"><br />Argumen atau input untuk fungsi ditulis di dalam tanda kurung.
+</p>
+<pre class="prompt">&gt;sin(45°), cos(pi), log(sqrt(E))
+</pre>
+<pre class="output">0.707106781187
+-1
+0.5
+</pre>
+<p class="comment">Seperti yang Anda lihat, fungsi trigonometri bekerja dengan radian, dan derajat
+dapat diubah dengan °. Jika keyboard Anda tidak memiliki karakter derajat tekan
+[F7], atau gunakan fungsi deg() untuk mengonversi.
+</p>
+<p class="comment">EMT menyediakan banyak sekali fungsi dan operator matematika.Hampir semua fungsi
+matematika sudah tersedia di EMT. Anda dapat melihat daftar lengkap fungsi-fungsi
+matematika di EMT pada berkas Referensi (klik menu Help -&gt; Reference)
+</p>
+<p class="comment">Untuk membuat rangkaian komputasi lebih mudah, Anda dapat merujuk ke hasil
+sebelumnya dengan "%". Cara ini sebaiknya hanya digunakan untuk merujuk hasil
+perhitungan dalam baris perintah yang sama.
+</p>
+<pre class="prompt">&gt;(sqrt(5)+1)/2, %^2-%+1 // Memeriksa solusi x^2-x+1=0
+</pre>
+<pre class="output">1.61803398875
+2
+</pre>
+<h2 class="comment">Latihan untuk Anda</h2>
+<ul class="comment">
+<li>
+Buka berkas Reference dan baca fungsi-fungsi matematika yang
+tersedia di EMT.
+</li>
+<li>
+Sisipkan beberapa baris perintah baru.
+</li>
+<li>
+Lakukan contoh-contoh perhitungan menggunakan fungsi-fungsi
+matematika di EMT.
+</li>
+</ul>
+<h2 class="comment">Jawaban dari Latihan untuk Anda</h2>
+<p class="comment">Berikut saya sisipkan beberapa baris perintah baru terkait
+fungsi-sungsi matematika yang tersedia di bagian references
+</p>
+<pre class="prompt">&gt;plot2d("x^2",-5,5)
+</pre>
+<pre class="prompt">&gt;sin(pi/4) + cos(pi/2)
+</pre>
+<pre class="output">0.707106781187
+</pre>
+<pre class="prompt">&gt;log(10)
+</pre>
+<pre class="output">2.30258509299
+</pre>
+<pre class="prompt">&gt;sqrt(784)
+</pre>
+<pre class="output">28
+</pre>
+<pre class="prompt">&gt;1331^(1/3)
+</pre>
+<pre class="output">11
+</pre>
+<pre class="prompt">&gt;7!
+</pre>
+<pre class="output">5040
+</pre>
+<h1 class="comment"><a name="Satuan">Satuan</a></h1>
+<p class="comment">EMT dapat mengubah unit satuan menjadi sistem standar internasional
+(SI). Tambahkan satuan di belakang angka untuk konversi sederhana.
+</p>
+<pre class="prompt">&gt;1miles  // 1 mil = 1609,344 m
+</pre>
+<pre class="output">1609.344
+</pre>
+<p class="comment">Beberapa satuan yang sudah dikenal di dalam EMT adalah sebagai
+berikut. Semua unit diakhiri dengan tanda dolar ($), namun boleh tidak
+perlu ditulis dengan mengaktifkan easyunits. 
+</p>
+<p class="comment">kilometer$:=1000;
+<br />km$:=kilometer$;
+<br />cm$:=0.01;
+<br />mm$:=0.001;
+<br />minute$:=60;
+<br />min$:=minute$;
+<br />minutes$:=minute$;
+<br />hour$:=60*minute$;
+<br />h$:=hour$;
+<br />hours$:=hour$;
+<br />day$:=24*hour$;
+<br />days$:=day$;
+<br />d$:=day$;
+<br />year$:=365.2425*day$;
+<br />years$:=year$;
+<br />y$:=year$;
+<br />inch$:=0.0254;
+<br />in$:=inch$;
+<br />feet$:=12*inch$;
+<br />foot$:=feet$;
+<br />ft$:=feet$;
+<br />yard$:=3*feet$;
+<br />yards$:=yard$;
+<br />yd$:=yard$;
+<br />mile$:=1760*yard$;
+<br />miles$:=mile$;
+<br />kg$:=1;
+<br />sec$:=1;
+<br />ha$:=10000;
+<br />Ar$:=100;
+<br />Tagwerk$:=3408;
+<br />Acre$:=4046.8564224;
+<br />pt$:=0.376mm;
+</p>
+<p class="comment">Untuk konversi ke dan antar unit, EMT menggunakan operator khusus,
+yakni -&gt;.
+</p>
+<pre class="prompt">&gt;4km -&gt; miles, 4inch -&gt; " mm"
+</pre>
+<pre class="output">2.48548476895
+101.6 mm
+</pre>
+<h1 class="comment"><a name="Format_Tampilan_Nilai">Format Tampilan Nilai</a></h1>
+<p class="comment">Akurasi internal untuk nilai bilangan di EMT adalah standar IEEE,
+sekitar 16 digit desimal. Aslinya, EMT tidak mencetak semua digit
+suatu bilangan. Ini untuk menghemat tempat dan agar terlihat lebih
+baik. Untuk mengatrtamilan satu bilangan, operator berikut dapat
+digunakan.
+</p>
+<pre class="prompt">&gt;pi
+</pre>
+<pre class="output">3.14159265359
+</pre>
+<pre class="prompt">&gt;longest pi
+</pre>
+<pre class="output">      3.141592653589793 
+</pre>
+<pre class="prompt">&gt;long pi
+</pre>
+<pre class="output">3.14159265359
+</pre>
+<pre class="prompt">&gt;short pi
+</pre>
+<pre class="output">3.1416
+</pre>
+<pre class="prompt">&gt;shortest pi
+</pre>
+<pre class="output">   3.1 
+</pre>
+<pre class="prompt">&gt;fraction pi
+</pre>
+<pre class="output">312689/99532
+</pre>
+<pre class="prompt">&gt;short 1200*1.03^10, long E, longest pi
+</pre>
+<pre class="output">1612.7
+2.71828182846
+      3.141592653589793 
+</pre>
+<p class="comment">Format aslinya untuk menampilkan nilai menggunakan sekitar 10 digit.
+Format tampilan nilai dapat diatur secara global atau hanya untuk satu
+nilai.
+</p>
+<p class="comment">Anda dapat mengganti format tampilan bilangan untuk semua perintah
+selanjutnya. Untuk mengembalikan ke format aslinya dapat digunakan
+perintah "defformat" atau "reset".
+</p>
+<pre class="prompt">&gt;longestformat; pi, defformat; pi
+</pre>
+<pre class="output">3.141592653589793
+3.14159265359
+</pre>
+<p class="comment">Kernel numerik EMT bekerja dengan bilangan titik mengambang (floating point)
+dalam presisi ganda IEEE (berbeda dengan bagian simbolik EMT). Hasil numerik
+dapat ditampilkan dalam bentuk pecahan.
+</p>
+<pre class="prompt">&gt;1/7+1/4, fraction %
+</pre>
+<pre class="output">0.392857142857
+11/28
+</pre>
+<h1 class="comment"><a name="Perintah_Multibaris">Perintah Multibaris</a></h1>
+<p class="comment">Perintah multi-baris membentang di beberapa baris yang terhubung
+dengan "..." di setiap akhir baris, kecuali baris terakhir. Untuk
+menghasilkan tanda pindah baris tersebut, gunakan tombol
+[Ctrl]+[Enter]. Ini akan menyambung perintah ke baris berikutnya dan
+menambahkan "..." di akhir baris sebelumnya. Untuk menggabungkan suatu
+baris ke baris sebelumnya, gunakan [Ctrl]+[Backspace].
+</p>
+<p class="comment">Contoh perintah multi-baris berikut dapat dijalankan setiap kali
+kursor berada di salah satu barisnya. Ini juga menunjukkan bahwa ...
+harus berada di akhir suatu baris meskipun baris tersebut memuat
+komentar.
+</p>
+<pre class="prompt">&gt;a=4; b=15; c=2; // menyelesaikan a*x^2+b*x+c=0 secara manual ...
+ D=sqrt(b^2/(a^2*4)-c/a); ...
+ -b/(2*a) + D, ...
+ -b/(2*a) - D
+</pre>
+<pre class="output">-0.138444501319
+-3.61155549868
+</pre>
+<h1 class="comment"><a name="Menampilkan_Daftar_Variabe">Menampilkan Daftar Variabe</a></h1>
+<p class="comment">Untuk menampilkan semua variabel yang sudah pernah Anda definisikan
+sebelumnya (dan dapat dilihat kembali nilainya), gunakan perintah
+"listvar".
+</p>
+<pre class="prompt">&gt;listvar
+</pre>
+<pre class="output">r                   1.25
+a                   4
+b                   15
+c                   2
+D                   1.73655549868123
+</pre>
+<p class="comment">Perintah listvar hanya menampilkan variabel buatan pengguna.
+Dimungkinkan untuk menampilkan variabel lain, dengan menambahkan
+string  termuat di dalam nama variabel yang diinginkan.
+</p>
+<p class="comment">Perlu Anda perhatikan, bahwa EMT membedakan huruf besar dan huruf
+kecil. Jadi variabel "d" berbeda dengan variabel "D".
+</p>
+<p class="comment">Contoh berikut ini menampilkan semua unit yang diakhiri dengan "m"
+dengan mencari semua variabel yang berisi "m$".
+</p>
+<pre class="prompt">&gt;listvar m$
+</pre>
+<pre class="output">km$                 1000
+cm$                 0.01
+mm$                 0.001
+nm$                 1853.24496
+gram$               0.001
+m$                  1
+hquantum$           6.62606957e-34
+atm$                101325
+</pre>
+<p class="comment">Untuk menghapus variabel tanpa harus memulai ulang EMT gunakan
+perintah "remvalue".
+</p>
+<pre class="prompt">&gt;remvalue a,b,c,D
+&gt;D
+</pre>
+<pre class="output">Variable D not found!
+Error in:
+D ...
+ ^
+</pre>
+<h1 class="comment"><a name="Menampilkan_Panduan">Menampilkan Panduan</a></h1>
+<p class="comment">Untuk mendapatkan panduan tentang penggunaan perintah atau fungsi di EMT, buka
+jendela panduan dengan menekan [F1] dan cari fungsinya. Anda juga dapat
+mengklik dua kali pada fungsi yang tertulis di baris perintah atau di teks
+untuk membuka jendela panduan.
+</p>
+<p class="comment">Coba klik dua kali pada perintah "intrandom" berikut ini!
+</p>
+<pre class="prompt">&gt;intrandom(10,6)
+</pre>
+<pre class="output">[4,  2,  6,  2,  4,  2,  3,  2,  2,  6]
+</pre>
+<p class="comment">Di jendela panduan, Anda dapat mengklik kata apa saja untuk menemukan
+referensi atau fungsi.
+</p>
+<p class="comment">Misalnya, coba klik kata "random" di jendela panduan. Kata tersebut
+boleh ada dalam teks atau di bagian "See:" pada panduan. Anda akan
+menemukan penjelasan fungsi "random", untuk menghasilkan bilangan acak
+berdistribusi uniform antara 0,0 dan 1,0. Dari panduan untuk "random"
+Anda dapat menampilkan panduan untuk fungsi "normal", dll.
+</p>
+<pre class="prompt">&gt;random(10)
+</pre>
+<pre class="output">[0.270906,  0.704419,  0.217693,  0.445363,  0.308411,  0.914541,  0.193585,
+0.463387,  0.095153,  0.595017]
+</pre>
+<pre class="prompt">&gt;normal(10)
+</pre>
+<pre class="output">[-0.495418,  1.6463,  -0.390056,  -1.98151,  3.44132,  0.308178,  -0.733427,
+-0.526167,  1.10018,  0.108453]
+</pre>
+<h1 class="comment"><a name="Matriks_dan_Vektor">Matriks dan Vektor</a></h1>
+<p class="comment">EMT merupakan suatu aplikasi matematika yang mengerti "bahasa matriks". Artinya,
+EMT menggunakan vektor dan matriks untuk perhitungan-perhitungan tingkat lanjut.
+Suatu vektor atau matriks dapat didefinisikan dengan tanda kurung siku.
+Elemen-elemennya dituliskan di dalam tanda kurung siku, antar elemen dalam satu
+baris dipisahkan oleh koma(,), antar baris dipisahkan oleh titik koma (;).
+</p>
+<p class="comment">Vektor dan matriks dapat diberi nama seperti variabel biasa.
+</p>
+<pre class="prompt">&gt;v=[4,5,6,3,2,1]
+</pre>
+<pre class="output">[4,  5,  6,  3,  2,  1]
+</pre>
+<pre class="prompt">&gt;A=[1,2,3;4,5,6;7,8,9]
+</pre>
+<pre class="output">            1             2             3 
+            4             5             6 
+            7             8             9 
+</pre>
+<p class="comment">Karena EMT mengerti bahasa matriks, EMT memiliki kemampuan yang sangat canggih
+untuk melakukan perhitungan matematis untuk masalah-masalah aljabar linier,
+statistika, dan optimisasi.
+</p>
+<p class="comment">Vektor juga dapat didefinisikan dengan menggunakan rentang nilai dengan interval
+tertentu menggunakan tanda titik dua (:),seperti contoh berikut ini.
+</p>
+<pre class="prompt">&gt;c=1:5
+</pre>
+<pre class="output">[1,  2,  3,  4,  5]
+</pre>
+<pre class="prompt">&gt;w=0:0.1:1
+</pre>
+<pre class="output">[0,  0.1,  0.2,  0.3,  0.4,  0.5,  0.6,  0.7,  0.8,  0.9,  1]
+</pre>
+<pre class="prompt">&gt;mean(w^2)
+</pre>
+<pre class="output">0.35
+</pre>
+<h1 class="comment"><a name="Bilangan_Kompleks">Bilangan Kompleks</a></h1>
+<p class="comment">EMT juga dapat menggunakan bilangan kompleks. Tersedia banyak fungsi untuk
+bilangan kompleks di EMT. Bilangan imaginer
+</p>
+<p class="comment">dituliskan dengan huruf I (huruf besar I), namun akan ditampilkan dengan huruf i
+(i kecil).
+</p>
+<pre class="comment">  re(x) : bagian riil pada bilangan kompleks x.
+  im(x) : bagian imaginer pada bilangan kompleks x.
+  complex(x) : mengubah bilangan riil x menjadi bilangan kompleks.
+  conj(x) : Konjugat untuk bilangan bilangan komplkes x.
+  arg(x) : argumen (sudut dalam radian) bilangan kompleks x.
+  real(x) : mengubah x menjadi bilangan riil.
+</pre><p class="comment">Apabila bagian imaginer x terlalu besar, hasilnya akan menampilkan pesan
+kesalahan.
+</p>
+<pre class="comment">  &gt;sqrt(-1) // Error!
+  &gt;sqrt(complex(-1))
+</pre><pre class="prompt">&gt;z=2+3*I, re(z), im(z), conj(z), arg(z), deg(arg(z)), deg(arctan(3/2))
+</pre>
+<pre class="output">2+3i
+2
+3
+2-3i
+0.982793723247
+56.309932474
+56.309932474
+</pre>
+<pre class="prompt">&gt;deg(arg(I)) // 90°
+</pre>
+<pre class="output">90
+</pre>
+<pre class="prompt">&gt;sqrt(-1)
+</pre>
+<pre class="output">Floating point error!
+Error in sqrt
+Error in:
+sqrt(-1) ...
+        ^
+</pre>
+<pre class="prompt">&gt;sqrt(complex(-1))
+</pre>
+<pre class="output">0+1i
+</pre>
+<p class="comment">EMT selalu menganggap semua hasil perhitungan berupa bilangan riil dan tidak
+akan secara otomatis mengubah ke bilangan kompleks.
+</p>
+<p class="comment">Jadi akar kuadrat -1 akan menghasilkan kesalahan, tetapi akar kuadrat kompleks
+didefinisikan untuk bidang koordinat dengan cara seperti biasa. Untuk mengubah
+bilangan riil menjadi kompleks, Anda dapat menambahkan 0i atau menggunakan
+fungsi "complex".
+</p>
+<pre class="prompt">&gt;complex(-1), sqrt(%)
+</pre>
+<pre class="output">-1+0i 
+0+1i
+</pre>
+<h1 class="comment"><a name="Matematika_Simbolik">Matematika Simbolik</a></h1>
+<p class="comment">EMT dapat melakukan perhitungan matematika simbolis (eksak) dengan bantuan
+software Maxima. Software Maxima otomatis sudah terpasang di komputer Anda ketika
+Anda memasang EMT. Meskipun demikian, Anda dapat juga memasang software Maxima
+tersendiri (yang terpisah dengan instalasi Maxima di EMT).
+</p>
+<p class="comment">Pengguna Maxima yang sudah mahir harus memperhatikan bahwa terdapat sedikit
+perbedaan dalam sintaks antara sintaks asli Maxima dan sintaks ekspresi simbolik
+di EMT.
+</p>
+<p class="comment">Untuk melakukan perhitungan matematika simbolis di EMT, awali perintah Maxima
+dengan tanda "&amp;". Setiap ekspresi yang dimulai dengan "&amp;" adalah ekspresi
+simbolis dan dikerjakan oleh Maxima.
+</p>
+<pre class="prompt">&gt;&amp;(a+b)^2
+</pre>
+<pre class="output">
+                                           2
+                                    (b + a)
+
+</pre>
+<pre class="prompt">&gt;&amp;expand((a+b)^2), &amp;factor(x^2+5*x+6)
+</pre>
+<pre class="output">
+                                  2            2
+                                 b  + 2 a b + a
+
+
+                                 (x + 2) (x + 3)
+
+</pre>
+<pre class="prompt">&gt;&amp;solve(a*x^2+b*x+c,x) // rumus abc
+</pre>
+<pre class="output">
+                          2                          2
+                 (- sqrt(b  - 4 a c)) - b      sqrt(b  - 4 a c) - b
+            [x = ------------------------, x = --------------------]
+                           2 a                         2 a
+
+</pre>
+<pre class="prompt">&gt;&amp;(a^2-b^2)/(a+b), &amp;ratsimp(%) // ratsimp menyederhanakan bentuk pecahan
+</pre>
+<pre class="output">
+                                      2    2
+                                     a  - b
+                                     -------
+                                      b + a
+
+
+                                      a - b
+
+</pre>
+<pre class="prompt">&gt;10! // nilai faktorial (modus EMT)
+</pre>
+<pre class="output">3628800
+</pre>
+<pre class="prompt">&gt;&amp;10! //nilai faktorial (simbolik dengan Maxima)
+</pre>
+<pre class="output">
+                                     3628800
+
+</pre>
+<p class="comment">Untuk menggunakan perintah Maxima secara langsung (seperti perintah pada layar
+Maxima) awali perintahnya dengan tanda "::" pada baris perintah EMT. Sintaks
+Maxima disesuaikan dengan sintaks EMT (disebut "modus kompatibilitas").
+</p>
+<pre class="prompt">&gt;factor(1000) // mencari semua faktor 1000 (EMT)
+</pre>
+<pre class="output">[2,  2,  2,  5,  5,  5]
+</pre>
+<pre class="prompt">&gt;:: factor(1000) // faktorisasi prima 1000 (dengan Maxima) 
+</pre>
+<pre class="output">
+                                       3  3
+                                      2  5
+
+</pre>
+<pre class="prompt">&gt;:: factor(20!)
+</pre>
+<pre class="output">
+                             18  8  4  2
+                            2   3  5  7  11 13 17 19
+
+</pre>
+<p class="comment">Jika Anda sudah mahir menggunakan Maxima, Anda dapat menggunakan sintaks asli
+perintah Maxima dengan menggunakan tanda ":::" untuk mengawali setiap perintah
+Maxima di EMT. Perhatikan, harus ada spasi antara ":::" dan perintahnya.
+</p>
+<pre class="prompt">&gt;::: binomial(5,2); // nilai C(5,2)
+</pre>
+<pre class="output">
+                                       10
+
+</pre>
+<pre class="prompt">&gt;::: binomial(m,4); // C(m,4)=m!/(4!(m-4)!)
+</pre>
+<pre class="output">
+                            (m - 3) (m - 2) (m - 1) m
+                            -------------------------
+                                       24
+
+</pre>
+<pre class="prompt">&gt;::: trigexpand(cos(x+y)); // rumus cos(x+y)=cos(x) cos(y)-sin(x)sin(y) 
+</pre>
+<pre class="output">
+                          cos(x) cos(y) - sin(x) sin(y)
+
+</pre>
+<pre class="prompt">&gt;::: trigexpand(sin(x+y));
+</pre>
+<pre class="output">
+                          cos(x) sin(y) + sin(x) cos(y)
+
+</pre>
+<pre class="prompt">&gt;::: trigsimp(((1-sin(x)^2)*cos(x))/cos(x)^2+tan(x)*sec(x)^2) //menyederhanakan fungsi trigonometri
+</pre>
+<pre class="output">
+                                            4
+                                sin(x) + cos (x)
+                                ----------------
+                                       3
+                                    cos (x)
+
+</pre>
+<p class="comment">Untuk menyimpan ekspresi simbolik ke dalam suatu variabel digunakan tanda "&amp;=".
+</p>
+<pre class="prompt">&gt;p1 &amp;= (x^3+1)/(x+1)
+</pre>
+<pre class="output">
+                                      3
+                                     x  + 1
+                                     ------
+                                     x + 1
+
+</pre>
+<pre class="prompt">&gt;&amp;ratsimp(p1)
+</pre>
+<pre class="output">
+                                    2
+                                   x  - x + 1
+
+</pre>
+<p class="comment">Untuk mensubstitusikan suatu nilai ke dalam variabel dapat digunakan perintah
+"with".
+</p>
+<pre class="prompt">&gt;&amp;p1 with x=3 // (3^3+1)/(3+1)
+</pre>
+<pre class="output">
+                                        7
+
+</pre>
+<pre class="prompt">&gt;&amp;p1 with x=a+b, &amp;ratsimp(%) //substitusi dengan variabel baru
+</pre>
+<pre class="output">
+                                         3
+                                  (b + a)  + 1
+                                  ------------
+                                   b + a + 1
+
+
+                           2                  2
+                          b  + (2 a - 1) b + a  - a + 1
+
+</pre>
+<pre class="prompt">&gt;&amp;diff(p1,x) //turunan p1 terhadap x
+</pre>
+<pre class="output">
+                                   2      3
+                                3 x      x  + 1
+                                ----- - --------
+                                x + 1          2
+                                        (x + 1)
+
+</pre>
+<pre class="prompt">&gt;&amp;integrate(p1,x) // integral p1 terhadap x
+</pre>
+<pre class="output">
+                                   3      2
+                                2 x  - 3 x  + 6 x
+                                -----------------
+                                        6
+
+</pre>
+<h1 class="comment"><a name="Tampilan_Matematika_Simbolik_dengan_LaTeX">Tampilan Matematika Simbolik dengan LaTeX</a></h1>
+<p class="comment">Anda dapat menampilkan hasil perhitunagn simbolik secara lebih bagus
+menggunakan LaTeX. Untuk melakukan hal ini, tambahkan tanda dolar ($) di depan
+tanda &amp; pada setiap perintah Maxima.
+<br />Perhatikan, hal ini hanya dapat menghasilkan tampilan yang diinginkan apabila
+komputer Anda sudah terpasang software LaTeX.
+</p>
+<pre class="prompt">&gt;$&amp;(a+b)^2
+&gt;$&amp;expand((a+b)^2), $&amp;factor(x^2+5*x+6)
+&gt;$&amp;solve(a*x^2+b*x+c,x) // rumus abc
+&gt;$&amp;(a^2-b^2)/(a+b), $&amp;ratsimp(%)
+</pre>
+<h1 class="comment"><a name="Selamat_Belajar_dan_Berlatih!">Selamat Belajar dan Berlatih!</a></h1>
+<p class="comment">Baik, itulah sekilas pengantar penggunaan software EMT. Masih banyak
+kemampuan EMT yang akan Anda pelajari dan praktikkan.
+</p>
+<p class="comment">Sebagai latihan untuk memperlancar penggunaan perintah-perintah EMT
+yang sudah dijelaskan di atas, silakan Anda lakukan hal-hal sebagai
+berikut.
+</p>
+<ul class="comment">
+<li>
+Carilah soal-soal matematika dari buku-buku Matematika.
+</li>
+<li>
+Tambahkan beberapa baris perintah EMT pada notebook ini.
+</li>
+<li>
+Selesaikan soal-soal matematika tersebut dengan menggunakan EMT.
+Pilih soal-soal yang sesuai dengan perintah-perintah yang sudah
+dijelaskan dan dicontohkan di atas.
+</li>
+</ul>
+<h1 class="comment"><a name="Latihan_EMT_Farah_Nisrina_Qurratu'aini">Latihan EMT Farah Nisrina Qurratu'aini</a></h1>
+<h2 class="comment">Soal Nomor 1</h2>
+<p class="comment">1. Hitunglah nilai (72 / 9) + (15 * 3)
+</p>
+<pre class="prompt">&gt;(72 / 9) + (15 * 3)
+</pre>
+<pre class="output">53
+</pre>
+<h2 class="comment">Soal Nomor 2</h2>
+<p class="comment">2. Tentukan nilai dari
+<br />   a) sqrt(2025)
+<br />   b) sin(pi/6) + cos(pi/4)
+<br />   c) log(50)
+</p>
+<pre class="prompt">&gt;sqrt(2025)
+</pre>
+<pre class="output">45
+</pre>
+<pre class="prompt">&gt;sin(pi/6)+cos(pi/4)
+</pre>
+<pre class="output">1.20710678119
+</pre>
+<pre class="prompt">&gt;log(50)
+</pre>
+<pre class="output">3.91202300543
+</pre>
+<h2 class="comment">Soal Nomor 3</h2>
+<p class="comment">3. Buktikan bahwa 8! = 6!*7*8
+</p>
+<pre class="prompt">&gt;8!, 6!*7*8
+</pre>
+<pre class="output">40320
+40320
+</pre>
+<h2 class="comment">Soal Nomor 4</h2>
+<p class="comment">4. Buat vektor k = {4,2,8,14,12}. Kemudian hitung jumlah anggota dari
+vektor k, rata-rata vektor k, dan elemen terbesar pada vektor k
+</p>
+<pre class="prompt">&gt;k=[4,2,8,14,12]; sum(k), mean(k), max(k)
+</pre>
+<pre class="output">40
+8
+14
+</pre>
+<h2 class="comment">Soal Nomor 5</h2>
+<p class="comment">5. Buatlah matriks P = {2, 4, 9; 5, -2, 4}. Kemudian hitung transpose
+dan determinan dari matriks P
+</p>
+<pre class="prompt">&gt;P = [2,4,9;6,-2,4;8,3,-1]
+</pre>
+<pre class="output">            2             4             9 
+            6            -2             4 
+            8             3            -1 
+</pre>
+<pre class="prompt">&gt;P = [2,4,9;6,-2,4;8,3,-1]; transpose(P), det(P)
+</pre>
+<pre class="output">            2             6             8 
+            4            -2             3 
+            9             4            -1 
+438
+</pre>
+<h2 class="comment">Soal Nomor 6</h2>
+<p class="comment">6. Gambar grafik fungsi kuadrat y = x^2 - 5x + 6 pada interval [-1,
+6].
+</p>
+<pre class="prompt">&gt;plot2d("x^2-5*x+6",-1,6)
+</pre>
+<h2 class="comment">Soal Nomor 7</h2>
+<p class="comment">7. Gambarkan grafik fungsi y = sin(2x) pada interval [-2*pi, 2*pi].
+</p>
+<pre class="prompt">&gt;plot2d("sin(2*x)",-2*pi,2*pi)
+</pre>
+<h2 class="comment">Soal Nomor 8</h2>
+<p class="comment">8. Buat grafik 3D untuk z = x^2 - y^2 pada interval [-3, 3].
+</p>
+<pre class="prompt">&gt;plot3d("x^2-y^2",-3,3,-3,3)
+</pre>
+<h2 class="comment">Soal Nomor 9</h2>
+<p class="comment">9. Tuliskan integral dari sin(x) pada interval [0, pi].
+</p>
+<pre class="prompt">&gt;$integrate(sin(x),x,0,pi)
+</pre>
+<h2 class="comment">Soal Nomor 10</h2>
+<p class="comment">10. Tuliskan faktor dari (x^2+7*x+10) tanpa LaTex
+</p>
+<pre class="prompt">&gt;&amp;expand((a+b)^2), &amp;factor(x^2+7*x+10)
+</pre>
+<pre class="output">
+                            2            2
+                           b  + 2 a b + a
+
+
+                           (x + 2) (x + 5)
+
+</pre>
+<h2 class="comment">Soal Nomor 11</h2>
+<p class="comment">11. Tuliskan faktor dari (x^2+7*x+10) menggunakan LaTex
+</p>
+<pre class="prompt">&gt;$&amp;expand((a+b)^2), $&amp;factor(x^2+7*x+10)
+</pre>
+</body>
+</html>
